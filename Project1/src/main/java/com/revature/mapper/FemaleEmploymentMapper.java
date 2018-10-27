@@ -3,17 +3,17 @@ package com.revature.mapper;
 import java.io.IOException;
 
 import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Mapper.Context;
 
-public class MaleEmploymentMapper extends Mapper<LongWritable, Text, Text, DoubleWritable>  {
+public class FemaleEmploymentMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
 	
 	public void map(LongWritable key, Text value, Context context) 
 			throws IOException, InterruptedException{
-		String ILOCode = "SL.EMP.1524.SP.MA.ZS";
-		String name = "Male Employment increase";
+		String ILOCode = "SL.EMP.1524.SP.FE.ZS";
+		String name = "Female Employment increase";
 		String line = value.toString();
 		line = line.substring(1,line.length()-2);
 		String[] arr = line.split("\",\"");
@@ -46,5 +46,6 @@ public class MaleEmploymentMapper extends Mapper<LongWritable, Text, Text, Doubl
 			}
 		}
 	}
+
 
 }

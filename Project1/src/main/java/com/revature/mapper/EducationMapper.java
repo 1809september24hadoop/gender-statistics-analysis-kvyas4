@@ -20,7 +20,7 @@ public class EducationMapper extends Mapper<LongWritable, Text, Text, DoubleWrit
 			String country = arr[0];
 			String code = arr[3];
 			if (code.contains(".FE.") && code.contains("SE.") && code.contains(".CUAT.")){
-				if(code.substring(12,14).equals("UP")) {
+				if(code.substring(12,14).equals("PO")) {
 					int currentYear = 2017;
 					for (int i = arr.length-1; i > 4 ; i--){
 						currentYear--;
@@ -30,7 +30,7 @@ public class EducationMapper extends Mapper<LongWritable, Text, Text, DoubleWrit
 						else {
 							double percentage = Double.parseDouble(arr[i]);
 							if (percentage < 30.0){
-								country = country + " (" + currentYear + ") :";
+//								country = country + " (" + currentYear + ") :";
 								context.write( new Text(country), new DoubleWritable(percentage));
 								break;
 							}
