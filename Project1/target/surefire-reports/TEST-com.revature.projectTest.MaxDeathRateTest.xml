@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="com.revature.projectTest.AverageIncreaseInFEducationTest" time="0.069" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="com.revature.projectTest.MaxDeathRateTest" time="1.139" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/java/jdk1.8.0_172/jre/lib/amd64"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.revature.projectTest.AverageIncreaseInFEducationTest" name="testReducer" time="0.02"/>
-  <testcase classname="com.revature.projectTest.AverageIncreaseInFEducationTest" name="testMapper" time="0.017"/>
-  <testcase classname="com.revature.projectTest.AverageIncreaseInFEducationTest" name="testMapReduce" time="0.032"/>
+  <testcase classname="com.revature.projectTest.MaxDeathRateTest" name="testReducer" time="1.093"/>
+  <testcase classname="com.revature.projectTest.MaxDeathRateTest" name="testMapper" time="0.008"/>
+  <testcase classname="com.revature.projectTest.MaxDeathRateTest" name="testMapReduce" time="0.038"/>
 </testsuite>

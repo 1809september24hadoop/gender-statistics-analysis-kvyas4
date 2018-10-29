@@ -11,6 +11,10 @@ import org.apache.hadoop.mapreduce.Reducer.Context;
 import com.google.common.util.concurrent.AtomicDouble;
 
 public class DeathRateReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable>{
+	/**
+	 * This reducer calculates the maximum of all the values it goes through and outputs the country with the
+	 * highest death rate in their latest recorded measures
+	 */
 	
 	public static volatile String CURRENT_MAX_WORD = null;
 	public static AtomicDouble CURRENT_MAX_COUNT = new AtomicDouble(Integer.MIN_VALUE);
@@ -22,9 +26,10 @@ public class DeathRateReducer extends Reducer<Text, DoubleWritable, Text, Double
 			CURRENT_MAX_COUNT = (value.get() > CURRENT_MAX_COUNT.get()) ? new AtomicDouble(value.get()) : CURRENT_MAX_COUNT;
 			CURRENT_MAX_WORD = (value.get()== CURRENT_MAX_COUNT.get()) ? key.toString() : CURRENT_MAX_WORD;
 		}
-		context.write(new Text(CURRENT_MAX_WORD), new DoubleWritable(CURRENT_MAX_COUNT.get()));		
-
+				
 	}
-	
-
+	@Override
+	protected void cleanup(Context context) throws IOException, InterruptedException{
+		context.write(new Text(CURRENT_MAX_WORD), new DoubleWritable(CURRENT_MAX_COUNT.get()));
+	}
 }

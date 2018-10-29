@@ -11,26 +11,12 @@ public class AvgIncFeducationReducer extends Reducer<Text, DoubleWritable, Text,
 
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) 
 			throws IOException, InterruptedException{
+		/**
+		 * The reducer receives a pre-calculated difference from the mapper. All it has to do is divide the difference
+		 * by 16 (the time period over which we are calculating the average), and print it to the output
+		 */
 		
-//		double previousValueholder = 0.0;
-//		double previousValue = 0;
-//		int counter = 0;
-//		double sumofIncreases = 0.0;
-//		double firstValue = 0.0;
-//		for (DoubleWritable fv : values){
-//			firstValue = fv.get();
-//			break;		
-//		}
-//		for ( DoubleWritable value : values){
-//			counter++;
-//			previousValueholder = previousValue;
-//			double increase = (value.get() - previousValueholder);
-//			sumofIncreases += increase;
-//			previousValue = value.get();
-//		}
-//		double finalsum = sumofIncreases - firstValue;
-//		double finalAverage = finalsum/(counter -1);
-		double difference = 0.0;
+	double difference = 0.0;
 		for (DoubleWritable value : values){
 			difference = value.get();
 		}

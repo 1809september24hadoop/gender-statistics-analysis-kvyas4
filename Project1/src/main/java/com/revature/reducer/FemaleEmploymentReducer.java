@@ -11,6 +11,10 @@ public class FemaleEmploymentReducer extends Reducer<Text, DoubleWritable, Text,
 	
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) 
 			throws IOException, InterruptedException{
+		/**
+		 * The reducer simply calculates the average over the time-period of 16 years to see % change on a
+		 * year by year basis.
+		 */
 
 		double percentIncrease = 0.0;
 		for (DoubleWritable value : values){

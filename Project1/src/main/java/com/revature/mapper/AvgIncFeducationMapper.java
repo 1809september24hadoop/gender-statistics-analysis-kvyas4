@@ -9,6 +9,14 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 
 public class AvgIncFeducationMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+	/**
+	 * This mapper looks at the education for females in the USA only. Depending on the indicator code of the education
+	 * type, it will record the first value found from the year 2000 going forward, and the first value recorded from the
+	 * year 2016 going backward. This way a good extrema values are recorded, their difference is taken and mapped
+	 */
+	
+	public static int IndexOfYearOfInterest = 44;
+	public static int StartOfNumericValues = 4;
 	
 	@Override
 	public void map(LongWritable key, Text value, Context context) 
@@ -37,7 +45,7 @@ public class AvgIncFeducationMapper extends Mapper<LongWritable, Text, Text, Dou
 //--------------------------------------------------------------------------------------------------------------------------
 // Running two loops, one from the beginning index, and one from the last index to collect the latest values and prevent
 // having to run the loop through the entire set of values.				
-				for(int i = 44 ; i < arr.length ; i++){
+				for(int i = IndexOfYearOfInterest ; i < arr.length ; i++){
 					if (arr[i].isEmpty()){
 						continue;
 					}
@@ -46,7 +54,7 @@ public class AvgIncFeducationMapper extends Mapper<LongWritable, Text, Text, Dou
 						break;
 					}
 				}
-				for (int i = arr.length -1 ; i > 4 ; i--){
+				for (int i = arr.length -1 ; i > StartOfNumericValues ; i--){
 					if (arr[i].isEmpty()){
 						continue;
 					}

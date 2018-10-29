@@ -9,7 +9,13 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class MaleEmploymentMapper extends Mapper<LongWritable, Text, Text, DoubleWritable>  {
+	/**
+	 * The mapper goes into the World data fields and records the employment information for males for the year
+	 * 2000 and the year 2015. It then finds the difference and sends it to the reducer. 
+	 */
 	
+	public static int IndexOfYearOfInterest = 44; //Represents the year 2000
+	public static int StartOfNumericValues = 4;
 	public void map(LongWritable key, Text value, Context context) 
 			throws IOException, InterruptedException{
 		String ILOCode = "SL.EMP.1524.SP.MA.ZS";
@@ -23,7 +29,7 @@ public class MaleEmploymentMapper extends Mapper<LongWritable, Text, Text, Doubl
 		double percentageOne = 0.0;
 		if (arr[1].equals("WLD")){
 			if(emplCode.equals(ILOCode)){
-				for (int i = 44 ; i < arr.length ; i++){
+				for (int i = IndexOfYearOfInterest ; i < arr.length ; i++){
 					if(arr[i].isEmpty()){
 						continue;			
 						}
@@ -32,7 +38,7 @@ public class MaleEmploymentMapper extends Mapper<LongWritable, Text, Text, Doubl
 						break;
 					}
 				}
-				for (int i = arr.length -1 ; i > 44 ; i--){
+				for (int i = arr.length -1 ; i > IndexOfYearOfInterest ; i--){
 					if(arr[i].isEmpty()){
 						continue;
 					}
